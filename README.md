@@ -16,7 +16,6 @@ For this task i've decided to send a mail. I've created a small lambda function 
 
 On trigger the lambda function will first retrieve the data from the file in the bucket. Then it will go through a parser. 
 
-#### The parser
 You can find the whole file ![here](./parser.py).
 
 First part of the parser is making the string a little bit more workable.
@@ -41,4 +40,14 @@ The second part of the parser will loop through this list, split it on commas an
             entry_obj[key] = value
         entries.append(entry_obj)
     return entries
+```
+
+The rest of the handler will check for the oldest entry. I assumed the time prop were most likely in Unix time format (seconds passed since 1 January 1970). I used time.ctime() on one of the entries and got "Tue Nov 12 16:44:53 2019". If it is older it will send a mail. The sendmail function is more or less a very basic python function which uses standard functionality to send mail. The recipient and sender is based on the envoriment variables we set on AWS lambda.
+```python
+    oldest_entry = max(parsed_data, key=lambda x: x["time"])
+    is_older = oldest_entry["time"] - time.time() > 60 * 60
+    print(f"Oldest timestamp: {time.ctime(oldest_entry['time'])}")
+    print(f"Oldest timestamp is 1 hour older than current time: {is_older}")
+    if is_older:
+        sendmail(oldest_entry
 ```
