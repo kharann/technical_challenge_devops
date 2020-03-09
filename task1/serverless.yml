@@ -1,0 +1,15 @@
+service: mailer
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: eu-west-1
+
+functions:
+  mailer:
+    handler: handler.trigger_alarm
+    events:
+      - s3:
+        bucket: ardaqdata
+        event: s3:ObjectCreated:*
+        existing: true
