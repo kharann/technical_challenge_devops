@@ -53,6 +53,6 @@ If the timestamp is older than one hour it will send a mail. The sendmail functi
     print(f"Oldest timestamp: {time.ctime(oldest_entry['time'])}")
     print(f"Oldest timestamp is 1 hour older than current time: {is_older}")
     if is_older:
-        sendmail(oldest_entry
+        sendmail(oldest_entry)
 ```
 
