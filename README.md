@@ -14,11 +14,11 @@ This lambda does the following:
     a. If the alarm is a slack message you could create a slack bot with enabled webhooks. This way we can easily post a message on slack through a POST request, where the token should be saved as an environment variable
     b. If the alarm is a mail we can simply use boto3 to send a mail with AWS SES.
 
-For this task, I've decided to send a mail. I've created a small lambda function in the![task1](./task1) tolder which can be deployed through serverless framework. One could see in![yaml file](./serverless.yml) that this function triggers on all changes to the bucket "ardoqdata".
+For this task, I've decided to send a mail. I've created a small lambda function in the ![task1](./task1) tolder which can be deployed through serverless framework. One could see in ![yaml file](./serverless.yml) that this function triggers on all changes to the bucket "ardoqdata".
 
 On trigger, the lambda function will first retrieve the data from the file in the bucket. Then it will go through a parser.
 
-You can find the whole file![here](./parser.py).
+You can find the whole file ![here](./parser.py).
 
 The first part of the parser is making the string a little bit more workable.
 
