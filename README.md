@@ -108,7 +108,7 @@ One big outlier here is why I have separated the query when filtering the JSON f
 
 ** If you have to do the same as in task 2 but with some linux command line tools, how would you approach this ?**
 
-The way i would approach this, which is also how i almost approach anything i don't know is through a ton of googling. I believe im quite good at googling to search for the information i want.
+The way i would approach this, which is also how i almost approach anything i don't know is through a ton of googling. I believe im quite good at knowing what to google to search for the information i want. If i was stuck after lets say 30-60 minutes of googling, i would ask for help about what i should search for from someone more knowledgeable about this topic
 
 When i read task i though about curl/wget instantly. The retrieving, parsing and filtering part of the task can be pretty tricky. Usually i would use wget/curl to download the gdrive file, but found it quit difficult because of not getting a raw download link. I would approach it by either google around for solutions or use CLI tools from github, like ![gdrive](https://github.com/gdrive-org/gdrive).
 
