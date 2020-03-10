@@ -56,3 +56,46 @@ If the timestamp is older than one hour it will send a mail. The sendmail functi
         sendmail(oldest_entry)
 ```
 
+
+## Task 2
+
+You can find the whole file ![here](./task2/play.yaml). This would be my first time playing around with Ansible! Overall a pretty fun experience. Pretty cool tool.
+
+```
+---
+- name: "Trial Slack Messenger"
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: "Download archive from google drive"
+      get_url:
+        url: "https://drive.google.com/uc?export=download&id=1fQPNwD65XdbI3iu7ujCppxN7NWv9NUKL"
+        dest: ./test.json
+        mode: u=r,g-r,o=r
+
+    - name: Save the json file content to the register
+      shell: cat test.json
+      register: result
+
+    - name: Save the json data to a Variable as a Fact
+      set_fact:
+        jsondata: "{{ result.stdout | from_json }}"
+
+    - name: Filter JSON data to find organizations with active trials
+      set_fact:
+        active_trials: "{{ jsondata | json_query(status_plan_query) | json_query(days_remaining_query) }}"
+        other_plans: "{{ jsondata | json_query(other_trials_query) }}"
+      vars:
+        status_plan_query: "organzations[?plan_id=='trial'] | [?status=='in_trial']"
+        days_remaining_query: '[?"days-remaining-trial" > `0`].label'
+        other_trials_query: "organzations[?plan_id!='trial'] | [?plan_id!='employee'].label"
+
+    - name: "Send message to slack"
+      slack:
+        token: slack/token/here
+        msg: "Active trials: {{ active_trials | join(', ') }}, \nOther active plans: {{ other_plans | join(', ')}}"
+
+    - debug: msg="trial_orgs => {{ active_trials }}, other_plans => {{ other_plans }}"
+```
+
+One big outlier here is why i have sepperated the query when filtering the JSOn file in status_plan_query and days_remaining_query. This is because "days-remaining-trial" includes a few "-", which json_query really didnt like. So after some googling i found out i had to use quotes around it. You have to change token in the slack task to the token you get from the webhook integration.
