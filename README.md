@@ -98,4 +98,5 @@ You can find the whole file ![here](./task2/play.yaml). This would be my first t
     - debug: msg="trial_orgs => {{ active_trials }}, other_plans => {{ other_plans }}"
 ```
 
-One big outlier here is why i have sepperated the query when filtering the JSOn file in status_plan_query and days_remaining_query. This is because "days-remaining-trial" includes a few "-", which json_query really didnt like. So after some googling i found out i had to use quotes around it. You have to change token in the slack task to the token you get from the webhook integration.
+One big outlier here is why I have separated the query when filtering the JSON file in status_plan_query and days_remaining_query. This is because "days-remaining-trial" includes a few "-", which json_query really didn't like. So after some googling, I found out I had to use quotes around it. You have to change token in the slack task to the token you get from the webhook integration.
+
