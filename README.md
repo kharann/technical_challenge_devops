@@ -65,7 +65,7 @@ If the timestamp is older than one hour it will send a mail. The sendmail functi
 
 You can find the whole file ![here](./task2/play.yaml). This would be my first time playing around with Ansible! Overall a pretty fun experience. Pretty cool tool.
 
-```
+```yaml
 ---
 - name: "Trial Slack Messenger"
   hosts: localhost

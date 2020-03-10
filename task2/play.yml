@@ -1,5 +1,5 @@
 ---
-- name: "Playing with Ansible and Git"
+- name: "Trial Slack Messenger"
   hosts: localhost
   connection: local
   tasks:
