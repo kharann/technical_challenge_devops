@@ -2,8 +2,8 @@
 This is answer to a technical challenge when i applied for a devops intern position.
 
 ## Task 1
-
-**How would you parse it to find if the oldest timestamp is older than 1 hour than the current time. If it is older to trigger some alarm of your choice slack message or email.**
+Parse some file
+**How would you parse it to find if the oldest timestamp is older than 1 hour than the current time. If it is older, trigger some alarm of your choice slack message or email.**
 
 Personally, I think about lambda functions when I read something like this. This is because the should only run based on a trigger. Since the code only sends when the timestamp is at least 1 hour older than the current time.
 
