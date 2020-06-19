@@ -1,4 +1,4 @@
-# Ardoq Devops Intern Challenge
+# Devops Intern Technical Challenge
 
 ## Task 1
 
